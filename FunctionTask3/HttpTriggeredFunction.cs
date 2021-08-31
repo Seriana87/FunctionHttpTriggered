@@ -12,11 +12,11 @@ using Microsoft.Extensions.Configuration;
 
 namespace ServerLessExample
 {
-    public class Function1
+    public class HttpTriggeredFunction
     {
         private readonly IConfiguration _configuration;
 
-        public Function1(IConfiguration configuration)
+        public HttpTriggeredFunction(IConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -24,7 +24,7 @@ namespace ServerLessExample
 
         [FunctionName("ServerlessExample")]
         public async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
